@@ -1,0 +1,5 @@
+rem set myCLASSPATH=.;C:\apache-maven-3.3.9\lib\*.jar;D:\ExecJARs\*.jar;D:\selenium-2.53.0\*.jar;C:\jython2.7.0\jython.jar;C:\jbehave-4.0.5\lib\*.jar;C:\jbehave-web-3.5.5\lib\*.jar;C:\apache-ant-1.9.7\lib\*.jar;C:\poi-3.14\*.jar;C:\poi-3.14\lib\*.jar;C:\poi-3.14\ooxml-lib\*.jar;C:\apache-log4j-2.5\bin\*.jar;C:\slf4j-1.7.21\*.jar;
+
+set myCLASSPATH=.;C:\apache-maven-3.3.9\lib\*;D:\ExecJARs\*;D:\selenium-2.53.0\*;C:\jython2.7.0\jython.jar;C:\jbehave-4.0.5\lib\*;C:\jbehave-web-3.5.5\lib\*;C:\apache-ant-1.9.7\lib\*;C:\poi-3.14\*;C:\poi-3.14\lib\*;C:\poi-3.14\ooxml-lib\*;C:\apache-log4j-2.5\bin\*;C:\slf4j-1.7.21\*;
+
+java -cp D:\eclipse45_ws\Sele1\bin;D:\eclipse45_ws\Sele1\JarFiles\testng.jar;D:\eclipse45_ws\Sele1\JarFiles\selenium-server-standalone-2.53.0.jar;%myCLASSPATH%; org.testng.TestNG D:\eclipse45_ws\Sele1\testng.xml
