@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<Configuration monitorInterval="5" packages="autoFramework">
+	<Appenders>
+		<!--File name="htmlfile" fileName="${sys:logFilename}" append="false">
+			<HTMLLayout title="Testlog" locationInfo="true" />
+		</File-->
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} | %-5level | %logger{36} | %C.%M()@%L | %msg%n"/>
+		</Console>
+		
+		<Routing name="Routing">
+			<Routes pattern="$${ctx:sTestClass_Method}">
+				<Route key="$${ctx:sTestClass_Method}">
+					<!-- this is executed when there is no valid value for sTestClass_Method -->
+					<File name="HTMLLogFile" fileName="NT_${sys:logFilename}" immediateFlush="true" append="false">
+						<CustomHTMLLayout title="NT_${sys:logFilename}" locationInfo="true" />
+					</File>
+				</Route>
+				<Route>
+					<!-- File name="HTMLLogFile-${ctx:threadId}" fileName="T_${ctx:threadId}_${sys:logFilename}" immediateFlush="true" append="false">
+						<HTMLLayout title="T_${ctx:threadId}_${sys:logFilename}" locationInfo="true" />
+					</File-->
+					
+					<!-- this is executed for each valid value of sTestClass_Method -->
+					<File name="Log_${ctx:sTestClass_Method}" fileName="logs/${date:yyyy-MM-dd}/T_${ctx:sTestClass_Method} ${date:HH-mm}.html" immediateFlush="true" append="false">
+						<CustomHTMLLayout title="T_${ctx:sTestClass_Method}" locationInfo="true" />
+					</File>
+				</Route>
+			</Routes>
+			<IdlePurgePolicy timeToLive="15" timeUnit="minutes"/>
+		</Routing>
+	</Appenders>
+
+	<Loggers>
+		<Root level="INFO" additivity="false">
+			<!--AppenderRef ref="htmlfile" level="INFO"/-->
+			<AppenderRef ref="STDOUT" level="INFO"/>
+		</Root>
+		<Logger name="Routing" level="INFO" additivity="true">
+			<AppenderRef ref="Routing" level="INFO"/>
+		</Logger>
+	</Loggers>
+</Configuration>
+
